@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/API/">
+    <Project Path="RaceDay_API/RaceDay_API/RaceDay_API.csproj" />
+    <Project Path="RaceDay_API/RaceDay_API.Tests/RacedayWebApi.Tests.csproj" />
+  </Folder>
+  <Folder Name="/MVC/">
+    <Project Path="RaceDay_MVC/RaceDay_MVC.csproj" />
+    <Project Path="RaceDay_MVC.Tests/RaceDay_MVC.Tests.csproj" />
+  </Folder>
+</Solution>

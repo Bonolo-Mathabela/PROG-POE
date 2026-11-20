@@ -1,0 +1,32 @@
+
+services:
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite:latest
+    container_name: raceday-azurite
+    # Blob service only; --loose and --skipApiVersionCheck keep it compatible with the latest Azure SDK.
+    command: azurite-blob --blobHost 0.0.0.0 --blobPort 10000 --location /data --loose --skipApiVersionCheck
+    ports:
+      - "10000:10000"
+    volumes:
+      - azurite-data:/data
+    restart: unless-stopped
+
+  raceday-mvc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: raceday-mvc:latest
+    container_name: raceday-mvc
+    ports:
+      - "8080:8080"
+    environment:
+      - ApiSettings__BaseUrl=http://host.docker.internal:5027
+    extra_hosts:
+      # Lets the container reach the API on the host (needed on Linux; harmless on Docker Desktop).
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - azurite
+    restart: unless-stopped
+
+volumes:
+  azurite-data:

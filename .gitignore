@@ -1,0 +1,15 @@
+# Build output
+bin/
+obj/
+publish/
+TestResults/
+
+# IDE files
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Never commit secrets
+appsettings.*.local.json
+*.env
